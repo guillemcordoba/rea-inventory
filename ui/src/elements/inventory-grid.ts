@@ -9,7 +9,7 @@ import { CircularProgress } from 'scoped-material-components/mwc-circular-progre
 export abstract class InventoryGrid extends BaseElement {
   /** Public attributes */
 
-  @property({ type: Boolean }) _loading: boolean = true;
+  @property({ type: Boolean }) _loading = true;
   @property({ type: Array }) _resources: Array<EconomicResource> = [];
 
   /** Dependencies */
