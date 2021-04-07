@@ -5,6 +5,7 @@ import { EconomicResource } from '@valueflows/vf-graphql';
 import { LIST_ECONOMIC_RESOURCES } from '../graphql/queries';
 import { BaseElement } from '@holochain-open-dev/common';
 import { CircularProgress } from 'scoped-material-components/mwc-circular-progress';
+import '@vaadin/vaadin-grid';
 
 export abstract class InventoryGrid extends BaseElement {
   /** Public attributes */

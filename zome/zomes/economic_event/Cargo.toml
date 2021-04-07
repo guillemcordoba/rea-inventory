@@ -1,0 +1,12 @@
+[package]
+authors = ["guillem.cordoba@gmail.com"]
+edition = "2018"
+name = "economic_event"
+version = "0.0.1"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+name = "economic_event"
+
+[dependencies]
+hc_zome_rea_economic_event = {path = "../../../../../holochain/holo-rea/zomes/rea_economic_event/zome"}

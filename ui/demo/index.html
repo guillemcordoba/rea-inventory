@@ -10,16 +10,51 @@
   </head>
   <body>
     <!-- TODO: change the element -->
-    <hod-calendar-event></hod-calendar-event>
+    <inventory-grid></inventory-grid>
 
     <script type="module">
       import { html, render } from 'lit-html';
-      import { CalendarEventsModule } from '../dist';
-      import { setupApolloClient } from '../test/mocks/setupApolloClient';
+      import {
+        CreateInventoryResource,
+        setupApolloClientElement,
+        InventoryGrid,
+      } from '../dist';
+      import { ApolloClient, InMemoryCache } from '@apollo/client/core';
+      import { SchemaLink } from '@apollo/client/link/schema';
 
-      // TODO: change the module name
-      setupApolloClient().then(client =>
-        new CalendarEventsModule({ apolloClient: client }).install()
+      import bindSchema from '@valueflows/vf-graphql-holochain';
+
+      import ConductorApi from '@holochain/conductor-api';
+
+      ConductorApi.AppWebsocket.connect('ws://localhost:8888').then(
+        async appWebsocket => {
+          const appInfo = await appWebsocket.appInfo({
+            installed_app_id: 'test-app',
+          });
+
+          const cellId = appInfo.cell_data[0].cell_id;
+
+          const client = new ApolloClient({
+            link: new SchemaLink({
+              schema: bindSchema({
+                conductorUri: 'ws://localhost:8888',
+                dnaConfig: {
+                  observation: cellId,
+                  planning: null,
+                  agent: null,
+                  proposal: null,
+                  specification: null,
+                },
+              }),
+            }),
+            cache: new InMemoryCache(),
+          });
+
+          customElements.define(
+            'inventory-grid',
+            setupApolloClientElement(InventoryGrid, client)
+          );
+        }
       );
     </script>
   </body>

@@ -1,0 +1,10 @@
+---
+manifest_version: "1"
+name: rea-inventory
+uuid: 00000000-0000-0000-0000-000000000000
+properties: ~
+zomes: 
+  - name: economic_resource
+    bundled: ../target/wasm32-unknown-unknown/release/economic_resource.wasm
+  - name: economic_event
+    bundled: ../target/wasm32-unknown-unknown/release/economic_event.wasm

@@ -1,6 +1,9 @@
 // TODO: change exports to be available for consumer packages
 
-export { calendarEventsTypeDefs } from './graphql/schema';
-export { calendarEventsResolvers } from './graphql/resolvers';
-export { CREATE_CALENDAR_EVENT } from './graphql/queries';
-export { CalendarEventsModule } from './calendar.module';
+export { CreateInventoryResource } from './elements/create-inventory-resource';
+export { InventoryGrid } from './elements/inventory-grid';
+export {
+  CREATE_ECONOMIC_RESOURCES,
+  LIST_ECONOMIC_RESOURCES,
+} from './graphql/queries';
+export { setupApolloClientElement } from './utils';
